@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ app.name }}</title>
+    <meta charset="utf-8">
+    <style>{{ app.css_code | safe }}</style>
+  </head>
+  <body>
+    {{ app.html_code | safe }}
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+    <script>{{ app.js_code | safe }}</script>
+  </body>
+</html>

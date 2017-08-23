@@ -19,6 +19,6 @@ from apps.views import index
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^apps/', include('apps.urls')),
+    url(r'^', include('apps.urls')),
     url(r'^$', index)
 ]
