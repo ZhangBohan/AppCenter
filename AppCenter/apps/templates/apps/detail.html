@@ -8,23 +8,51 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <style>
+    <style type="text/css">
       .ac-content {
-        width: 1000px;
-        height: 1000px;
-        border: none;
+        height: 500px;
+        border: .2rem solid #f7f7f9;
+      }
+      .meta-info {
+        margin: 1rem 0;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .right-slider {
+        border-left: .2rem solid #f7f7f9;
+      }
+      .avatar {
+        width: 1.5rem;
+      }
+      .user-info {
+        font-size: .5rem;
+        margin: .5rem 0;
       }
     </style>
   </head>
   <body>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg"
+             width="30" height="30" class="d-inline-block align-top" alt="">
+        工具大全
+      </a>
+    </nav>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-9">
-          <h1>{{ app.name }}</h1>
-          <p>{{ app.description }}</p>
-          <iframe class="ac-content" src="{% url 'app_code' url_slug=app.url_slug %}"></iframe>
+          <div class="meta-info">
+            <h1 class="d-inline">{{ app.name }}</h1>
+            <p class="text-secondary d-inline">{{ app.description }}</p>
+            <p class="text-secondary user-info">
+              <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" class="rounded-circle avatar">
+              <span class="align-bottom">张伯函</span>
+            </p>
+          </div>
+          <iframe class="ac-content col-md-12" src="{% url 'app_code' url_slug=app.url_slug %}"></iframe>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 right-slider">
         </div>
       </div>
     </div>
