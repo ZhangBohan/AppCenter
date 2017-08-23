@@ -4,6 +4,11 @@
     <title>{{ app.name }}</title>
     <meta charset="utf-8">
     <style>{{ app.css_code | safe }}</style>
+      <script>
+          if (window.self === window.top) {
+              window.location = "{% url 'app_detail' url_slug=app.url_slug %}"
+          }
+      </script>
   </head>
   <body>
     {{ app.html_code | safe }}
