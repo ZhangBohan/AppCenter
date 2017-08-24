@@ -3,8 +3,8 @@ from .models import App
 
 
 def index(request):
-    app = App.objects.first()
-    return render(request, 'apps/detail.html', {'app': app})
+    apps = App.objects.all()
+    return render(request, 'apps/index.html', {'apps': apps})
 
 
 def app_detail(request, url_slug):
