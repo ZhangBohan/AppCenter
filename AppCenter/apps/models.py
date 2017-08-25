@@ -9,3 +9,4 @@ class App(TimeStampedModel):
     js_code = models.TextField('JS代码')
     html_code = models.TextField('HTML代码')
     css_code = models.TextField('CSS代码')
+    pv = models.IntegerField('访问量', default=0)
