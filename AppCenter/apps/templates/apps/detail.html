@@ -56,6 +56,9 @@
             </p>
           </div>
           <iframe class="ac-content col-md-12" src="{% url 'app_code' url_slug=app.url_slug %}"></iframe>
+          <div class="ac-readme">
+            {{ app.markdown_to_html | safe }}
+          </div>
         </div>
         <div class="col-md-3 right-slider">
         </div>
