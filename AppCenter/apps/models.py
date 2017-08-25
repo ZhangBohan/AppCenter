@@ -15,4 +15,4 @@ class App(TimeStampedModel):
     pv = models.IntegerField('访问量', default=0)
 
     def markdown_to_html(self):
-        return markdown.markdown(self.readme_md)
+        return markdown.markdown(self.readme_md) if self.readme_md else ''
