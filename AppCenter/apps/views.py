@@ -3,7 +3,7 @@ from .models import App
 
 
 def index(request):
-    apps = App.objects.all()
+    apps = App.objects.order_by('-modified').all()
     return render(request, 'apps/index.html', {'apps': apps})
 
 

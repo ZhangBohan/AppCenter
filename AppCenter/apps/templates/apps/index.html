@@ -22,28 +22,40 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">最新的工具</h4>
-                </div>
-                {% if apps %}
-                <div class="list-group list-group-flush">
-                    {% for app in apps %}
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{ app.name }}</h5>
+            <ul class="nav nav-tabs mb-4">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">最近加入的工具</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">最多使用的工具</a>
+                </li>
+            </ul>
+
+            <div class="container">
+            {% if apps %}
+                <div class="row mb-3">
+                {% for app in apps %}
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="{% url 'app_detail' url_slug=app.url_slug %}">{{ app.name }}</a></h5>
+                                    <h6 class="card-subtitle mb-2">
+                                        <span class="badge badge-info align-bottom">URL</span>
+                                        <span class="badge badge-info align-bottom">转码</span>
+                                    </h6>
+                                    <p class="card-text">{{ app.description }}</p>
+                                </div>
+                            </div>
                         </div>
-                        <p class="mb-1">{{ app.description }}</p>
-                        <small>
-                            <span class="badge badge-info align-bottom">URL</span>
-                            <span class="badge badge-info align-bottom">转码</span>
-                        </small>
-                    </a>
-                    {% endfor %}
+                    {% if forloop.counter|divisibleby:"3" %}
                 </div>
-                {% else %}
+                <div class="row">
+                    {% endif %}
+                {% endfor %}
+                    </div>
+            {% else %}
                 <p>No Apps are available.</p>
-                {% endif %}
+            {% endif %}
             </div>
         </div>
         <div class="col-md-3">
