@@ -40,8 +40,9 @@
                                 <div class="card-body">
                                     <h5 class="card-title"><a href="{% url 'app_detail' url_slug=app.url_slug %}">{{ app.name }}</a></h5>
                                     <h6 class="card-subtitle mb-2">
-                                        <span class="badge badge-info align-bottom">URL</span>
-                                        <span class="badge badge-info align-bottom">转码</span>
+                                        {% for app_tag in app.tags %}
+                                        <span class="badge badge-info align-bottom" id="app_tag.id">{{ app_tag.tag.name }}</span>
+                                        {% endfor %}
                                     </h6>
                                     <p class="card-text">{{ app.description }}</p>
                                 </div>
@@ -62,8 +63,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">热门标签</h4>
-                    <span class="badge badge-info align-bottom">URL</span>
-                    <span class="badge badge-info align-bottom">转码</span>
+                    {% for tag in tags %}
+                    <span class="badge badge-info align-bottom">{{ tag.name }}</span>
+                    {% endfor %}
                 </div>
             </div>
         </div>

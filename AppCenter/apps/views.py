@@ -1,11 +1,12 @@
 from django.db.models import F
 from django.shortcuts import render
-from .models import App
+from .models import App, Tag
 
 
 def index(request):
     apps = App.objects.order_by('-modified').all()
-    return render(request, 'apps/index.html', {'apps': apps})
+    tags = Tag.objects.filter(hot=True)
+    return render(request, 'apps/index.html', {'apps': apps, "tags": tags})
 
 
 def app_detail(request, url_slug):
