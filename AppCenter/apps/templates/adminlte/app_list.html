@@ -1,0 +1,89 @@
+{% extends 'adminlte/lib/base.html' %}
+
+
+{% block header_tail %}
+    <link rel="stylesheet" href="/static/speedx_admin.css">
+{% endblock %}
+
+{% block content %}
+    <div class="box">
+        <form class="form-horizontal">
+          <div class="box-body">
+            <div class="form-group col-sm-4">
+              <label for="orderId" class="col-sm-4 control-label">搜索</label>
+
+              <div class="col-sm-8">
+                <input type="text" class="form-control" id="orderId" name="q" value="{{ pager.params.q }}" placeholder="输入应用名称">
+              </div>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary">搜索</button>
+          </div>
+        </form>
+    {% include 'delete_templates.html' %}
+        <div class="box-body">
+            <table class="table table-bordered">
+                <tr>
+                    <th>应用名称</th>
+                    <th>URL路径</th>
+                    <th>描述</th>
+                    <th>标签</th>
+                    <th>访问量</th>
+                    <th>操作</th>
+                </tr>
+                {% for item in pager.items %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.url_slug }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>
+                            {% for app_tag in item.tags %}
+                                {{ app_tag.tag.name }}
+                                <br />
+                            {% endfor %}
+                        </td>
+                        <td>{{ item.pv }}</td>
+                        <td>
+                            <a id="{{ item.id }}" href="/adminlte/goods/{{ item.id }}/edit">编辑</a>
+                            <a href="" data-toggle="modal" data-target="#sure-modal" data-sub_type_id="{{ item.id }}">删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="box-footer clearfix">
+            {% include 'adminlte/lib/_pagination.html' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block body_tail %}
+    <script>
+        function delete_coupon(app_id) {
+            $.ajax({
+                url: '/adminlte/app/'+ app_id +'/delete',
+                type: 'POST',
+                data: {},
+                success: function (result) {
+                    if (result.code == 0){
+                        window.location.reload();
+                    }else{
+                        alert(result.message);
+                    }
+                }
+            });
+        }
+
+        $('#sure-modal').on('show.bs.modal', function (e) {
+            var sub_type_id = e.relatedTarget.getAttribute('data-sub_type_id');
+            $('#sure-modal').data('target', sub_type_id);
+        });
+
+        $('.btn-primary').click(function (e) {
+            var object_id = $('#sure-modal').data('target');
+            $('#sure-modal').modal('hide');
+            delete_coupon(object_id);
+        });
+    </script>
+{% endblock %}
