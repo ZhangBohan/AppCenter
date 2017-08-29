@@ -1,3 +1,4 @@
 django
 django-model-utils
 markdown
+django-adminlte-admin
