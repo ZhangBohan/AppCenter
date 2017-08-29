@@ -1,4 +1,4 @@
-import markdown
+import markdown2
 
 from django.db import models
 from model_utils.models import TimeStampedModel
@@ -20,7 +20,7 @@ class App(TimeStampedModel):
         return self.name
 
     def markdown_to_html(self):
-        return markdown.markdown(self.readme_md) if self.readme_md else ''
+        return markdown2.markdown(self.readme_md, extras=['fenced-code-blocks']) if self.readme_md else ''
 
     class Meta:
         ordering = ("pri", )

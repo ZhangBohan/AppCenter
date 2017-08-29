@@ -1,4 +1,5 @@
 django
 django-model-utils
-markdown
+markdown2
 django-adminlte-admin
+pygments
