@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'adminlte.apps.AdminlteConfig',
     'django.contrib.sitemaps',
+    'raven.contrib.django.raven_compat',
     'apps',
 ]
 
@@ -122,3 +124,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+RAVEN_CONFIG = {
+    'dsn': 'https://7194b33ca4524b3e97b19ed4ff484357:57d77eed8bc241d8bd5cd37d1442b62a@sentry.io/212824',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    #'release': raven.fetch_git_sha(os.path.dirname(os.pardir)),
+}
