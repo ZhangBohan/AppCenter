@@ -4,7 +4,6 @@ from .models import App
 
 
 class AppSitemap(Sitemap):
-    changefreq = "never"
     priortity = 0.5
 
     def items(self):
@@ -14,4 +13,4 @@ class AppSitemap(Sitemap):
         return obj.modified
 
     def location(self, obj: App):
-        return reverse('app_detail', args=(obj.id,))
+        return reverse('app_detail', args=(obj.url_slug,))
