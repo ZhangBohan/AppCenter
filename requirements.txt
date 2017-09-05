@@ -3,3 +3,4 @@ django-model-utils
 markdown2
 django-adminlte-admin
 pygments
+raven
