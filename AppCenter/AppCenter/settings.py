@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'adminlte.apps.AdminlteConfig',
-
+    'django.contrib.sitemaps',
     'apps',
 ]
 
