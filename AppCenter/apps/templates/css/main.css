@@ -1,0 +1,77 @@
+// *{
+//     margin: 0;
+//     padding: 0;
+// }
+body{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    background-color: #FFF;
+}
+.CodeMirror{
+    height: 100%;
+}
+header{
+    height: 48px;
+    width: 100%;
+    background-color: #00BCD4;
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    line-height: 48px;
+    padding: 0 12px;
+    color: #FFF;
+}
+header img{
+    width: 36px;
+}
+.editor-wrap{
+    width: 60%;
+    height: calc(100% - 48px);
+    position: absolute;
+    top: 48px;
+    background-color: #a9b5bf;
+}
+.result-wrap{
+    width: 40%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 36px;
+}
+.tree{
+    width: 148px;
+    height: 100%;
+    background-color: #273235;
+    color: #FFF;
+    position: absolute;
+    left: 0;
+}
+.tree ul>li{
+    padding: 4px 12px;
+    border-bottom: 1px solid #273235;
+    cursor: pointer;
+}
+.active{
+    background: #4d5b5f;
+}
+.editor{
+    width: calc(100% - 148px);
+    height: 100%;
+    background-color: blue;
+    position: absolute;
+    right: 0;
+}
+.editor .tab-content, .editor .tab-pane{
+    height: 100%;
+}
+#resultiframe{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+
+
+

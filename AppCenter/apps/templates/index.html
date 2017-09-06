@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/codemirror-5.25.0/lib/codemirror.css">
+    <link rel="stylesheet" href="js/codemirror-5.25.0/theme/base16-dark.css">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header>
+        <div class="logo fl">
+            <img src="img/tools.png" alt="">
+        </div>
+        <nav>
+            
+        </nav>
+        <div class="fr">
+            <p>Killer</p>
+        </div>
+    </header>
+    <section class="editor-wrap">
+        <aside class="tree">
+            <ul class="nav nav-pills nav-stacked" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">index.html</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">main.css</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">main.js</a></li>
+              </ul>
+        </aside>
+        <!-- <div class="v-line"></div> -->
+        <section class="editor">
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                    <textarea id="htmlEditor" title="HTML"></textarea>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                    <textarea id="cssEditor" title="HTML"></textarea>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+                    <textarea id="jsEditor" title="HTML"></textarea>
+                </div>
+            </div>
+        </section>
+    </section>
+    <section class="result-wrap">
+        <iframe id="resultiframe" frameBorder="0"></iframe>
+    </section>
+
+<script src="js/jquery-2.0.3.js"></script>
+<script src="css/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/codemirror-5.25.0/lib/codemirror.js"></script>
+<script src="js/emmet.js"></script>
+<script src="js/main.js"></script>
+
+<script src="js/codemirror-5.25.0/mode/xml/xml.js"></script>
+<script src="js/codemirror-5.25.0/mode/javascript/javascript.js"></script>
+<script src="js/codemirror-5.25.0/mode/css/css.js"></script>
+<!-- <script src="js/codemirror-5.25.0/mode/htmlmixed/htmlmixed.js"></script> -->
+
+</body>
+</html>
