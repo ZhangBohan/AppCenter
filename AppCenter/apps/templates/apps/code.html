@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
   <style>{{ app.css_code | safe }}</style>
-  {{ app.ext_source }}
+  {{ app.ext_source | safe }}
   <script>
       if (window.self === window.top) {
           window.location = "{% url 'app_detail' url_slug=app.url_slug %}"
