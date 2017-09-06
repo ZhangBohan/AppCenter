@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>{{ app.name }} | 工具大全</title>
+    <title>{{ app.name }}在线 {{ app.name }} online | 工具大全</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="description" content="在线{{ app.name }}, {{ app.name }} Online, {% for app_tag in app.tags %}{{ app_tag.tag.name }}{% endfor %}">
+    <meta name="description" content="{{ app.description | default_if_none:''  }}。{% for app_tag in app.tags %}{{ app_tag.tag.name }}{% endfor %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -49,13 +49,15 @@
           <h1 class="d-inline">{{ app.name | default_if_none:'' }}</h1>
           <p class="text-secondary d-inline">{{ app.description | default_if_none:''  }}</p>
           <p class="text-secondary user-info">
-            <span class="align-bottom">By: @{{ app.user.get_full_name | default_if_none:'雷峰' }}</span>
+            <span class="align-bottom">
+              By: @{% if app.user.get_full_name %}{{ app.user.get_full_name }}{% else %}{{ app.user.username }}{% endif%}
+            </span>
             {% for app_tag in app.tags %}
             <span class="badge badge-info align-bottom" id="app_tag.id">{{ app_tag.tag.name }}</span>
             {% endfor %}
           </p>
         </div>
-        <iframe class="ac-content col-md-12" src="{% url 'app_code' url_slug=app.url_slug %}"></iframe>
+        <iframe class="ac-content col-md-12" src="{% url 'app_code' username=app.user.username url_slug=app.url_slug %}"></iframe>
         <div class="ac-readme">
           {{ app.markdown_to_html | default_if_none:'' | safe }}
         </div>
