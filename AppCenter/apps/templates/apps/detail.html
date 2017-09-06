@@ -44,25 +44,21 @@
       </div>
     </nav>
     <div class="container">
-      <div class="row">
-        <div class="col-md-9">
-          <div class="meta-info">
-            <h1 class="d-inline">{{ app.name }}</h1>
-            <p class="text-secondary d-inline">{{ app.description }}</p>
-            <p class="text-secondary user-info">
-              <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" class="rounded-circle avatar">
-              <span class="align-bottom">张伯函</span>
-              {% for app_tag in app.tags %}
-              <span class="badge badge-info align-bottom" id="app_tag.id">{{ app_tag.tag.name }}</span>
-              {% endfor %}
-            </p>
-          </div>
-          <iframe class="ac-content col-md-12" src="{% url 'app_code' url_slug=app.url_slug %}"></iframe>
-          <div class="ac-readme">
-            {{ app.markdown_to_html | safe }}
-          </div>
+      <div>
+        <div class="meta-info">
+          <h1 class="d-inline">{{ app.name }}</h1>
+          <p class="text-secondary d-inline">{{ app.description }}</p>
+          <p class="text-secondary user-info">
+            <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" class="rounded-circle avatar">
+            <span class="align-bottom">张伯函</span>
+            {% for app_tag in app.tags %}
+            <span class="badge badge-info align-bottom" id="app_tag.id">{{ app_tag.tag.name }}</span>
+            {% endfor %}
+          </p>
         </div>
-        <div class="col-md-3 right-slider">
+        <iframe class="ac-content col-md-12" src="{% url 'app_code' url_slug=app.url_slug %}"></iframe>
+        <div class="ac-readme">
+          {{ app.markdown_to_html | safe }}
         </div>
       </div>
     </div>
