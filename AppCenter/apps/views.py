@@ -1,4 +1,5 @@
 from django.db.models import F
+from django.http import JsonResponse
 from django.shortcuts import render
 from .models import App, Tag
 import json
@@ -43,7 +44,7 @@ def upload_code(request):
     app.css_code = css_code
     app.js_code = js_code
     app.save()
-    return "str"
+    return JsonResponse({"status": "ok"})
 
 
 def editor_index(request):
@@ -57,4 +58,6 @@ def editor_index(request):
     if not App.objects.filter(id=app_id).exists():
         raise Exception(u"app %s not exixts" % app_id)
     app = App.objects.get(id=app_id)
+    if not request.user.id == app.user_id:
+        raise Exception(u"you has no permision do this")
     return render(request, 'editor/index.html', {"app": app})
