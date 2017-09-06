@@ -1,4 +1,5 @@
 import markdown2
+from django.contrib.auth.models import User
 
 from django.db import models
 from model_utils.models import TimeStampedModel
@@ -16,6 +17,7 @@ class App(TimeStampedModel):
     pv = models.IntegerField('访问量', default=0)
     pri = models.IntegerField(u"排序", default=0)
     is_valid = models.BooleanField(u"是否有效", default=True)
+    user = models.ForeignKey(User)
 
     def __str__(self):
         return self.name
