@@ -4,7 +4,7 @@ from .models import App, Tag
 
 
 def index(request):
-    sortby = request.GET.get('sortby', 'modified')
+    sortby = request.GET.get('sortby', 'created')
     apps = App.objects.order_by('-%s' % sortby).all()
     tags = Tag.objects.filter(hot=True)
     return render(request, 'apps/index.html', {'apps': apps, "tags": tags, 'sortby': sortby})

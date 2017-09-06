@@ -49,7 +49,7 @@
           <h1 class="d-inline">{{ app.name | default_if_none:'' }}</h1>
           <p class="text-secondary d-inline">{{ app.description | default_if_none:''  }}</p>
           <p class="text-secondary user-info">
-            <span class="align-bottom">By: @{{ app.user.get_full_name }}</span>
+            <span class="align-bottom">By: @{{ app.user.get_full_name | default_if_none:'雷峰' }}</span>
             {% for app_tag in app.tags %}
             <span class="badge badge-info align-bottom" id="app_tag.id">{{ app_tag.tag.name }}</span>
             {% endfor %}
