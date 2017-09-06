@@ -1,0 +1,73 @@
+{% extends 'adminlte/lib/base.html' %}
+
+
+{% block header_tail %}
+    <link rel="stylesheet" href="/static/speedx_admin.css">
+    <link rel="stylesheet" href="/static/plugins/datetimepicker/bootstrap-datetimepicker.min.css">
+{% endblock %}
+
+{% block content %}
+    <div class="box">
+        <div class="box-body">
+            <!-- form start -->
+            <form class="form-horizontal" method="post" id="form">
+                <!-- /.box-body -->
+                <div class="box-body">
+                    <label for="name" class="col-sm-2 control-label">应用名称</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="请输入应用名称" value="">
+                    </div>
+                </div>
+                <div class="box-body">
+                    <label for="name" class="col-sm-2 control-label">应用URL</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="url_slug" name="url_slug" placeholder="请输入应用URL" value="">
+                    </div>
+                </div>
+                <div class="box-body">
+                    <label for="name" class="col-sm-2 control-label">应用描述</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="description" name="description" placeholder="请输入应用描述" value="">
+                    </div>
+                </div>
+                <div class="box-body">
+                    <label for="name" class="col-sm-2 control-label">应用标签</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="tags" name="tags" placeholder="多个应用标签，空格分隔" value="">
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-info center-block">开始编辑代码</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /.box -->
+{% endblock %}
+
+{% block body_tail %}
+    <script src="/static/plugins/jQueryUI/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/plugins/tagit/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/plugins/jquery.loading/jquery.loading.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        //提交前检查
+        $("#form").submit(function (e) {
+            console.log('start submit');
+
+            var v_name = $("#name").val();
+            console.log("vname" + v_name)
+            if (v_name == ""){
+                alert("请填写应用名称");
+                return false;
+            }
+
+            var sub_type_id = $("#url_slug").val();
+            console.log("url_slug" + sub_type_id)
+            if (sub_type_id == ""){
+                alert("请选择应用路径");
+                return false;
+            }
+
+        });
+    </script>
+{% endblock %}

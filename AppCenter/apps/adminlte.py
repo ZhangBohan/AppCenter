@@ -8,10 +8,11 @@ from django.contrib import messages
 from django.db.models import Q
 from django.forms.models import model_to_dict
 from django.shortcuts import render, redirect
-from .models import AppTagShip, App
+from .models import AppTagShip, App, Tag
 from django.http.response import JsonResponse
 from django.template import loader
 from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 
 app_menu = AdminMenu("应用管理", icon_classes="fa fa-shopping-bag", sort=8000)
 
@@ -29,6 +30,35 @@ class AppView(AdminLTEBaseView):
         return render(request, 'adminlte/app_list.html', context={
             "pager": pager,
         })
+
+
+class AppCreateView(AdminLTEBaseView):
+
+    menu = AdminMenu(name="添加App", parent_menu=app_menu, sort=8197)
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'adminlte/add.html', context={})
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+        app_name = data.get("name")
+        url_slug = data.get("url_slug")
+        desc = data.get("description")
+        if App.objects.filter(url_slug=url_slug).exists():
+            messages.add_message(request, messages.ERROR, u"url路径不能重复，请重新填写URL")
+            return redirect(AppCreateView.view_name())
+        if App.objects.filter(name=app_name).exists():
+            messages.add_message(request, messages.ERROR, u"应用名称不能重复，请重新填写应用名称")
+            return redirect(AppCreateView.view_name())
+        tags = data.get("tags")
+        app = App(name=app_name, url_slug=url_slug, description=desc, user_id=request.user.id)
+        app.save()
+        tag_list = tags.split(" ")
+        for tag in tag_list:
+            tag, created = Tag.objects.get_or_create(name=tag)
+            app_tag_ship = AppTagShip(app_id=app.id, tag_id=tag.id)
+            app_tag_ship.save()
+        return HttpResponseRedirect('/editor/?app_id=%s' % app.id)
 
 
 class AppDeleteView(AdminLTEBaseView):
