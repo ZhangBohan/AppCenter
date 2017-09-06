@@ -12,6 +12,7 @@ class App(TimeStampedModel):
     html_code = models.TextField('HTML代码', blank=True, null=True)
     css_code = models.TextField('CSS代码', blank=True, null=True)
     readme_md = models.TextField('markdown 描述', blank=True, null=True)
+    ext_source = models.TextField('额外资源', blank=True, null=True)
     pv = models.IntegerField('访问量', default=0)
     pri = models.IntegerField(u"排序", default=0)
     is_valid = models.BooleanField(u"是否有效", default=True)
