@@ -21,3 +21,12 @@ def app_detail(request, url_slug):
 def app_code(request, url_slug):
     app = App.objects.get(url_slug=url_slug)
     return render(request, 'apps/code.html', {'app': app})
+
+
+def editor_index(request):
+    """
+        编辑器首页
+    :param request: 
+    :return: 
+    """
+    return render(request, 'editor/index.html')

@@ -16,7 +16,6 @@ import raven
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -125,6 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 RAVEN_CONFIG = {
     'dsn': 'https://7194b33ca4524b3e97b19ed4ff484357:57d77eed8bc241d8bd5cd37d1442b62a@sentry.io/212824',
