@@ -5,8 +5,8 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
-  <style>{{ app.css_code | safe }}</style>
-  {{ app.ext_source | safe }}
+  <style>{{ app.css_code | default_if_none:'' | safe }}</style>
+  {{ app.ext_source | default_if_none:'' | safe }}
   <script>
       if (window.self === window.top) {
           window.location = "{% url 'app_detail' url_slug=app.url_slug %}"
@@ -20,7 +20,7 @@
 </head>
 
 <body>
-  {{ app.html_code | safe }}
+  {{ app.html_code | default_if_none:'' | safe }}
 </div>
 
   <script>{{ app.js_code | safe }}</script>
