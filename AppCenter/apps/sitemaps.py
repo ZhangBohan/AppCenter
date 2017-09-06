@@ -13,4 +13,4 @@ class AppSitemap(Sitemap):
         return obj.modified
 
     def location(self, obj: App):
-        return reverse('app_detail', args=(obj.url_slug,))
+        return reverse('app_detail', args=(obj.user.username, obj.url_slug,))
