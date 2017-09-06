@@ -49,8 +49,7 @@
           <h1 class="d-inline">{{ app.name | default_if_none:'' }}</h1>
           <p class="text-secondary d-inline">{{ app.description | default_if_none:''  }}</p>
           <p class="text-secondary user-info">
-            <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" class="rounded-circle avatar">
-            <span class="align-bottom">张伯函</span>
+            <span class="align-bottom">By: @{{ app.user.get_full_name }}</span>
             {% for app_tag in app.tags %}
             <span class="badge badge-info align-bottom" id="app_tag.id">{{ app_tag.tag.name }}</span>
             {% endfor %}
