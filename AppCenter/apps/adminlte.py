@@ -44,11 +44,8 @@ class AppCreateView(AdminLTEBaseView):
         app_name = data.get("name")
         url_slug = data.get("url_slug")
         desc = data.get("description")
-        if App.objects.filter(url_slug=url_slug).exists():
+        if App.objects.filter(user__username=request.user.username, url_slug=url_slug).exists():
             messages.add_message(request, messages.ERROR, u"url路径不能重复，请重新填写URL")
-            return redirect(AppCreateView.view_name())
-        if App.objects.filter(name=app_name).exists():
-            messages.add_message(request, messages.ERROR, u"应用名称不能重复，请重新填写应用名称")
             return redirect(AppCreateView.view_name())
         tags = data.get("tags")
         app = App(name=app_name, url_slug=url_slug, description=desc, user_id=request.user.id)
