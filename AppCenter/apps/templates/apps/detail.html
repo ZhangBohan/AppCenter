@@ -4,7 +4,7 @@
     <title>{{ app.name }} | 工具大全</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="description" content="在线{{ app.name }},{{ app.name }} Online, {% for app_tag in app.tags %}{{ app_tag }}{% endfor %}">
+    <meta name="description" content="在线{{ app.name }},{{ app.name }} Online, {% for app_tag in app.tags %}{{ app_tag.tag.name }}{% endfor %}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
