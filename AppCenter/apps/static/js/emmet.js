@@ -1074,7 +1074,7 @@ var emmet = (function(global) {
 	}
 
 	if (typeof _ == 'undefined') {
-		throw 'Cannot access to Underscore.js lib';
+		throw 'Cannot access to Underscore.js libs';
 	}
 
 	/** List of registered modules */

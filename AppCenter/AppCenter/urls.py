@@ -17,7 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 
-from apps.views import index, editor_index
+from apps.views import index, editor_index, upload_code
 from .sitemaps import sitemaps
 
 
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^', include('apps.urls')),
     url(r'^adminlte/', include('adminlte.urls')),
     url(r'^editor/', editor_index),
+    url(r'^code/', upload_code),
     url(r'^$', index),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap')
