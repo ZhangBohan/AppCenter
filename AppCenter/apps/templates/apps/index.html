@@ -38,7 +38,9 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title"><a href="{% url 'app_detail' url_slug=app.url_slug %}">{{ app.name }}</a></h5>
+                                    <h5 class="card-title">
+                                        <a href="{% url 'app_detail' username=app.user.username url_slug=app.url_slug %}">{{ app.name }}</a>
+                                    </h5>
                                     <h6 class="card-subtitle mb-2">
                                         {% for app_tag in app.tags %}
                                         <span class="badge badge-info align-bottom" id="app_tag.id">{{ app_tag.tag.name }}</span>

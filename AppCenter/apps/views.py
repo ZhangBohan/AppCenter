@@ -11,16 +11,16 @@ def index(request):
     return render(request, 'apps/index.html', {'apps': apps, "tags": tags, 'sortby': sortby})
 
 
-def app_detail(request, url_slug):
-    app = App.objects.get(url_slug=url_slug)
+def app_detail(request, username, url_slug):
+    app = App.objects.get(url_slug=url_slug, user__username=username)
     app.pv_recently_count = app.pv
     app.pv = F('pv') + 1
     app.save()
     return render(request, 'apps/detail.html', {'app': app})
 
 
-def app_code(request, url_slug):
-    app = App.objects.get(url_slug=url_slug)
+def app_code(request, username, url_slug):
+    app = App.objects.get(url_slug=url_slug, user__username=username)
     return render(request, 'apps/code.html', {'app': app})
 
 

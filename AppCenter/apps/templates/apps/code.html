@@ -9,7 +9,7 @@
   {{ app.ext_source | default_if_none:'' | safe }}
   <script>
       if (window.self === window.top) {
-          window.location = "{% url 'app_detail' url_slug=app.url_slug %}"
+          window.location = "{% url 'app_detail' username=app.user.username url_slug=app.url_slug %}"
       }
   </script>
 
