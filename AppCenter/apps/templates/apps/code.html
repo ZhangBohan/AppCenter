@@ -16,7 +16,6 @@
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
-  <script>{{ app.js_code | safe }}</script>
 
 </head>
 
@@ -24,6 +23,7 @@
   {{ app.html_code | safe }}
 </div>
 
+  <script>{{ app.js_code | safe }}</script>
   <script>
   // tell the embed parent frame the height of the content
   if (window.parent && window.parent.parent){
