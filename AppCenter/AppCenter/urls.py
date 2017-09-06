@@ -24,11 +24,11 @@ from .sitemaps import sitemaps
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('apps.urls')),
     url(r'^adminlte/', include('adminlte.urls')),
     url(r'^editor/', editor_index),
     url(r'^code/', upload_code),
     url(r'^$', index),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
-        name='django.contrib.sitemaps.views.sitemap')
+        name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^', include('apps.urls')),
 ]
