@@ -7,6 +7,34 @@ $(function(){
     var cssEditor = initEditor(cssDom)
     var jsEditor = initEditor(jsDom)
 
+    // 保存代码
+    $('.save-code').on('click', function(){
+        var editorData = {
+            html_code: htmlEditor.getValue(),
+            css_code: cssEditor.getValue(), 
+            js_code: jsEditor.getValue(),
+        }
+        console.log('htmlEditor:', htmlEditor.getValue())
+        console.log('cssEditor:', cssEditor.getValue())
+        console.log('jsEditor:', jsEditor.getValue())
+
+        $.ajax({
+            type: "post", 
+            url: "/code/",
+            data: JSON.stringify(editorData),
+            dataType: "json",
+            contentType: "application/json",
+            success: function(data){
+                console.log(data);
+                window.location.href = "/"
+            },
+            error: function(){
+                alert('代码保存失败重新保存')
+            }
+        });
+    })
+
+
     function initEditor(dom){
         var domEditor = CodeMirror.fromTextArea(dom, {
             theme: 'base16-dark',
