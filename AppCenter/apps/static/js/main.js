@@ -13,10 +13,12 @@ $(function(){
             html_code: htmlEditor.getValue(),
             css_code: cssEditor.getValue(), 
             js_code: jsEditor.getValue(),
+            app_id: app_id
         }
         console.log('htmlEditor:', htmlEditor.getValue())
         console.log('cssEditor:', cssEditor.getValue())
         console.log('jsEditor:', jsEditor.getValue())
+        console.log('app_id:', app_id)
 
         $.ajax({
             type: "post", 
