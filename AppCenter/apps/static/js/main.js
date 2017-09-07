@@ -91,21 +91,27 @@ $(function(){
         }
 
         /* 判断用户输入HTML片段还是完成的HTML文档 */
-        var completedflag = 0;
         var lowhtml = html.toLowerCase();
-
         if(lowhtml.toLowerCase().indexOf('</body>') >= 0 && lowhtml.toLowerCase().indexOf('<body>')>=0){
-            completedflag = 1;
+            alert('不需要输入基本html结构，直接写标签就可以了')
         }
         
-        if(completedflag){
-            html = html.replace(/\<link href="style.css" rel="stylesheet"\/>/g,'<style>' + css + '</style>');
-            html = html.replace(/\<link rel="stylesheet" href="style.css"\/>/g,'<style>' + css + '</style>');
-            html = html.replace(/\<script src="script.js"\>\<\/script\>/g,'<script>' + js + '<\/script>');
-            result = html;
-        }else{
-            result = '<!DOCTYPE HTML><html><head><style>' + css + '</style></head><body>' + html + '<script type="text/javascript">' + js + '<\/script></body></html>';
-        }
+        result = '<!doctype html>' +
+                '<html lang="en">' +
+                '<head>' +
+                  '<meta charset="UTF-8">' +
+                  '<title>Document</title>' +
+                '<style>' +
+                    css +
+                '</style>' +
+                '</head>' +
+                '<body>' +
+                    html +
+                '<script type="text/javascript">' + 
+                    js +
+                '</script>' + 
+                '</body>' + 
+                '</html>'
 
         doc.open();
         doc.writeln(result);
