@@ -3,9 +3,34 @@ $(function(){
     var cssDom = document.getElementById('cssEditor')
     var jsDom = document.getElementById('jsEditor')
 
-    var htmlEditor = initEditor(htmlDom)
-    var cssEditor = initEditor(cssDom)
-    var jsEditor = initEditor(jsDom)
+    var htmlConfig = {
+        mode: 'text/html'
+    }
+    var cssConfig = {
+        mode: 'text/css'
+    }
+    var jsConfig = {
+        mode: 'text/javascript'
+    }
+
+    var htmlEditor = initEditor(htmlDom, htmlConfig)
+    var cssEditor = initEditor(cssDom, cssConfig)
+    var jsEditor = initEditor(jsDom, jsConfig)
+
+    var htmlCode = '', cssCode = '', jsCode = '';
+
+    CodeMirror.on(htmlEditor, "change", function(instance, changeObj) {
+        htmlCode = htmlEditor.getValue();
+        show(htmlCode, cssCode, jsCode)
+    })
+    CodeMirror.on(cssEditor, "change", function(instance, changeObj) {
+        cssCode = cssEditor.getValue();
+        show(htmlCode, cssCode, jsCode)
+    })
+    CodeMirror.on(jsEditor, "change", function(instance, changeObj) {
+        jsCode = jsEditor.getValue();
+        show(htmlCode, cssCode, jsCode)
+    })
 
     // 保存代码
     $('.save-code').on('click', function(){
@@ -21,7 +46,7 @@ $(function(){
         console.log('app_id:', app_id)
 
         $.ajax({
-            type: "post", 
+            type: "POST", 
             url: "/code/",
             data: JSON.stringify(editorData),
             dataType: "json",
@@ -37,10 +62,11 @@ $(function(){
     })
 
 
-    function initEditor(dom){
+    function initEditor(dom, config){
+        var mode = config.mode;
         var domEditor = CodeMirror.fromTextArea(dom, {
             theme: 'base16-dark',
-            mode: 'text/html',
+            mode: mode,
             lineNumbers: true,
             matchBrackets: true,
             autoCloseBrackets: true,
@@ -50,13 +76,8 @@ $(function(){
         return domEditor;
     }
 
-    CodeMirror.on(htmlEditor, "change", function(instance, changeObj) {
-        console.log(htmlEditor.getValue())
-        var htmlCode = htmlEditor.getValue();
-        show(htmlCode)
-    })
-
-    function show(html){
+    function show(html, css, js){
+        console.log('html:'+html, 'css:'+css, 'js:'+js)
         /* end of do resize here*/
         var iframe = $('#resultiframe')[0],
             doc;
@@ -69,8 +90,31 @@ $(function(){
             doc = iframe.document;
         }
 
+        /* 判断用户输入HTML片段还是完成的HTML文档 */
+        var lowhtml = html.toLowerCase();
+        if(lowhtml.toLowerCase().indexOf('</body>') >= 0 && lowhtml.toLowerCase().indexOf('<body>')>=0){
+            alert('不需要输入基本html结构，直接写标签就可以了')
+        }
+        
+        result = '<!doctype html>' +
+                '<html lang="en">' +
+                '<head>' +
+                  '<meta charset="UTF-8">' +
+                  '<title>Document</title>' +
+                '<style>' +
+                    css +
+                '</style>' +
+                '</head>' +
+                '<body>' +
+                    html +
+                '<script type="text/javascript">' + 
+                    js +
+                '</script>' + 
+                '</body>' + 
+                '</html>'
+
         doc.open();
-        doc.writeln(html);
+        doc.writeln(result);
         doc.close();
     }
 })
