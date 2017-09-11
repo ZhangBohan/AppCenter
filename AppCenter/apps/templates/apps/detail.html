@@ -62,6 +62,21 @@
           {{ app.markdown_to_html | default_if_none:'' | safe }}
         </div>
       </div>
+      <div id="disqus_thread"></div>
+      <script>
+      
+      var disqus_config = function () {
+        this.page.url = window.location;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = '{{ app.user.username }}' + app.id;
+      };
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://pipelinecraft.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
